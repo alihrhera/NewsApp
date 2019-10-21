@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "724868502748",
+    "firebase_url": "https://testproject-a82d0.firebaseio.com",
+    "project_id": "testproject-a82d0",
+    "storage_bucket": "testproject-a82d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724868502748:android:319acc6eca9708399b9019",
+        "android_client_info": {
+          "package_name": "com.alihrhera.NewsApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724868502748-275qa7e9lutirk9v5qen8s0u20oe9jsi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alihrhera.NewsApp",
+            "certificate_hash": "ca2ad767472097027c00ff39f6a059f56614cb2a"
+          }
+        },
+        {
+          "client_id": "724868502748-dhndmjrka3el9ks0ul7po5op2fihboe9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcLXPkxOGEhHP0XlN8NxbSNA3PS8oQ8Oc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724868502748-dhndmjrka3el9ks0ul7po5op2fihboe9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
