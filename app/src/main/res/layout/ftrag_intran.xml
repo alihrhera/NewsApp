@@ -4,8 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".inra.IntranFarg">
+    tools:context=".inra.IntraFrag"
+
+    >
+    <ImageButton
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:id="@+id/convert"
+        android:src="@drawable/ic_grid"
+        android:elevation="@dimen/_10sdp"
+        />
     <LinearLayout
+        android:id="@+id/noDataCont"
         android:gravity="center"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
@@ -34,7 +44,9 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
+        tools:listitem="@layout/row_artical"
+        android:id="@+id/myRecycler"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 </RelativeLayout>

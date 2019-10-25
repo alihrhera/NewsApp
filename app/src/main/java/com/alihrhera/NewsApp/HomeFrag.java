@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alihrhera.NewsApp.inra.IntranFarg;
+import com.alihrhera.NewsApp.inra.IntraFrag;
 
 public class HomeFrag extends Fragment {
 
@@ -34,7 +34,7 @@ public class HomeFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Intar", Toast.LENGTH_SHORT).show();
-                MyStaticFun.getInstance().attachFrag((MainActivity)getActivity(),new IntranFarg());
+                MyStaticFun.getInstance().attachFrag((MainActivity)getActivity(),new IntraFrag());
 
             }
         });
