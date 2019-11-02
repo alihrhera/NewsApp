@@ -21,12 +21,17 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.alihrhera.NewsApp.ConnectToFireBase;
+import com.alihrhera.NewsApp.MainActivity;
+import com.alihrhera.NewsApp.MoveObj;
 import com.alihrhera.NewsApp.MyAdapter;
 import com.alihrhera.NewsApp.OneNew;
 import com.alihrhera.NewsApp.R;
+import com.alihrhera.NewsApp.ShowOneArticle;
 import com.alihrhera.NewsApp.StaticKeys;
 
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class IntraFrag extends Fragment {
@@ -71,7 +76,15 @@ public class IntraFrag extends Fragment {
             }
         });
 
+        adapter.setOnItemClick(new MyAdapter.OnItemClick() {
+            @Override
+            public void onClick(OneNew oneNew) {
+                String date=""+android.text.format.DateFormat.format("yyyy-MM-dd hh:mm:ss a",new Date(oneNew.getTime()));
+                MoveObj.getInstance().Start(getContext()).setDateToMove(oneNew.getPhotoPath(),"Intra",date,oneNew.getTitle(),oneNew.getContent());
+                MainActivity.attachFrag(new ShowOneArticle());
 
+            }
+        });
         return root;
     }
 

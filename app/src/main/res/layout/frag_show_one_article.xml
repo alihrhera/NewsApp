@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ShowOneArticle">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/articlePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/infoCard"
+            app:cardElevation="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@id/articlePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp">
+            <LinearLayout
+                android:layoutDirection="rtl"
+                android:gravity="center|start"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textColor="#000"
+                    android:gravity="start|center"
+                    android:textSize="@dimen/_14sdp"
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:textColor="#fff"
+                    android:padding="@dimen/_3sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="24/10/2019"
+                    android:background="@drawable/cerved_bg"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="#fff"
+                    android:padding="@dimen/_3sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:text="24/10/2019"
+                    android:background="@drawable/cerved_bg"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:id="@+id/type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            app:cardElevation="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@id/infoCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/content"
+                android:gravity="start|center"
+                android:padding="@dimen/_5sdp"
+                android:textColor="#000"
+                android:textSize="@dimen/_13sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

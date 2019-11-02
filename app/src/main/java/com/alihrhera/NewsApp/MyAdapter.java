@@ -17,6 +17,11 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<OneNew> dataList=new ArrayList<>();
     private int mLayout=R.layout.row_artical;
+    private OnItemClick onItemClick;
+
+    public void setOnItemClick(OnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
 
     public void setDataList(List<OneNew> dataList) {
         this.dataList = dataList;
@@ -36,11 +41,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        OneNew data=dataList.get(position);
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+         OneNew data=dataList.get(position);
         holder.title.setText(data.getTitle());
         holder.content.setText(data.getContent());
         Picasso.get().load(data.getPhotoPath()).fit().centerCrop().into(holder.image);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.onClick(dataList.get(holder.getAdapterPosition()));
+            }
+        });
+
     }
 
     @Override
@@ -61,5 +74,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
      }
  }
+
+ public interface OnItemClick{
+        void onClick(OneNew oneNew);
+ }
+
+
+
+
+
+
+
 
 }
