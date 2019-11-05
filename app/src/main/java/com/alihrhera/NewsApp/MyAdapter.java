@@ -5,10 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alihrhera.NewsApp.my_database.MyDataBaseConn;
+import com.alihrhera.NewsApp.my_database.OfflineOneNew;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -39,18 +42,32 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         View view= LayoutInflater.from(parent.getContext()).inflate(mLayout,parent,false);
         return new MyViewHolder(view);
     }
-
+    private MyDataBaseConn db=MyDataBaseConn.getInstance();
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-         OneNew data=dataList.get(position);
+         final OneNew data=dataList.get(position);
         holder.title.setText(data.getTitle());
         holder.content.setText(data.getContent());
         Picasso.get().load(data.getPhotoPath()).fit().centerCrop().into(holder.image);
-
+        db.Connect(holder.itemView.getContext());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onItemClick.onClick(dataList.get(holder.getAdapterPosition()));
+            }
+        });
+        holder.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OfflineOneNew n=new OfflineOneNew();
+                n.setPhotoPath(data.getPhotoPath());
+                n.setTitle(data.getTitle());
+                n.setTime(data.getTime());
+                n.setContent(data.getContent());
+                n.setType(data.getType());
+                if (db.insertToDataBase(n)){
+                    Toast.makeText(holder.itemView.getContext(), "Done", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -62,7 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-     TextView title,content;
+     TextView title,content,save;
      ImageView image;
 
      public MyViewHolder(@NonNull View view) {
@@ -70,7 +87,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
          title=view.findViewById(R.id.row_title);
          content=view.findViewById(R.id.row_content);
          image=view.findViewById(R.id.row_image);
-
+         save=view.findViewById(R.id.save_to_read);
 
      }
  }
