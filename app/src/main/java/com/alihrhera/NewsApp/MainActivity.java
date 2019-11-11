@@ -27,29 +27,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        attachFrag(MyStaticFun.getInstance().getFragment());
+    }
 }

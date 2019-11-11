@@ -24,7 +24,7 @@ public class MyDataBaseConn {
     private MyDataBaseConn() {
     }
 
-    SQLiteDatabase db;
+    private SQLiteDatabase db;
     public  MyDataBaseConn Connect(Context context) {
         MyHelper helper=new MyHelper(context);
         db=helper.getReadableDatabase();
@@ -57,6 +57,7 @@ public class MyDataBaseConn {
                 data.setTitle(cursor.getString(cursor.getColumnIndex(StaticKeys._title)));
                 data.setPhotoPath(cursor.getString(cursor.getColumnIndex(StaticKeys._photoPath)));
                 ret.add(data);
+                cursor.moveToNext();
             }
 
 

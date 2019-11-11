@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alihrhera.NewsApp.favorite.OfflineFrag;
 import com.alihrhera.NewsApp.inra.IntraFrag;
 
 public class HomeFrag extends Fragment {
@@ -56,13 +57,20 @@ public class HomeFrag extends Fragment {
 
             }
         });
-        star.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.getSavedArticle).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.attachFrag(new OfflineFrag());
 
             }
         });
         return view;
     }
 
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        MyStaticFun.getInstance().setFragment(this);
+    }
 }

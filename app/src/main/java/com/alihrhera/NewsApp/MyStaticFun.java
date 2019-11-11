@@ -20,8 +20,17 @@ class MyStaticFun {
     }
 
 
+    private Fragment fragment;
 
-     void attachFrag(AppCompatActivity activity, Fragment fragment){
+    public Fragment getFragment() {
+        return fragment;
+    }
+
+    public void setFragment(Fragment fragment) {
+        this.fragment = fragment;
+    }
+
+    void attachFrag(AppCompatActivity activity, Fragment fragment){
         if (fragment!=null) {
             FragmentManager fragmentManager = activity.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

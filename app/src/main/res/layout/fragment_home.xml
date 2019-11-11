@@ -132,6 +132,7 @@
 
         >
         <androidx.cardview.widget.CardView
+            android:id="@+id/getSavedArticle"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_15sdp"
@@ -147,7 +148,7 @@
                 android:textSize="@dimen/_18sdp"
                 android:textColor="@color/colorPrimaryDark"
                 android:drawableTop="@drawable/ic_star"
-                android:text="المفضله "
+                android:text="المقالات المحفوظه "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

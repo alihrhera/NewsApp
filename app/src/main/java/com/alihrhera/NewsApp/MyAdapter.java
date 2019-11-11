@@ -18,16 +18,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private List<OneNew> dataList=new ArrayList<>();
+    private List<?> dataList=new ArrayList<>();
+
     private int mLayout=R.layout.row_artical;
     private OnItemClick onItemClick;
-
+    private boolean isSaved;
     public void setOnItemClick(OnItemClick onItemClick) {
         this.onItemClick = onItemClick;
     }
 
     public void setDataList(List<OneNew> dataList) {
         this.dataList = dataList;
+        notifyDataSetChanged();
+    }
+    public void setOffLineList(List<OfflineOneNew> dataList) {
+        this.dataList = dataList;
+        isSaved=true;
         notifyDataSetChanged();
     }
 
@@ -45,7 +51,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private MyDataBaseConn db=MyDataBaseConn.getInstance();
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-         final OneNew data=dataList.get(position);
+        OneNew data=(OneNew) dataList.get(position);
+        if(dataList instanceof OfflineOneNew){
+            data=(OfflineOneNew) dataList.get(position);
+        }
+
+        if (isSaved){
+            holder.save.setVisibility(View.GONE);
+        }
+
+
         holder.title.setText(data.getTitle());
         holder.content.setText(data.getContent());
         Picasso.get().load(data.getPhotoPath()).fit().centerCrop().into(holder.image);
@@ -53,18 +68,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClick.onClick(dataList.get(holder.getAdapterPosition()));
+                onItemClick.onClick((OneNew) dataList.get(holder.getAdapterPosition()));
             }
         });
+        final OneNew finalData = data;
         holder.save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OfflineOneNew n=new OfflineOneNew();
-                n.setPhotoPath(data.getPhotoPath());
-                n.setTitle(data.getTitle());
-                n.setTime(data.getTime());
-                n.setContent(data.getContent());
-                n.setType(data.getType());
+                n.setPhotoPath(finalData.getPhotoPath());
+                n.setTitle(finalData.getTitle());
+                n.setTime(finalData.getTime());
+                n.setContent(finalData.getContent());
+                n.setType(finalData.getType());
                 if (db.insertToDataBase(n)){
                     Toast.makeText(holder.itemView.getContext(), "Done", Toast.LENGTH_SHORT).show();
                 }
@@ -82,7 +98,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
      TextView title,content,save;
      ImageView image;
 
-     public MyViewHolder(@NonNull View view) {
+      MyViewHolder(@NonNull View view) {
          super(view);
          title=view.findViewById(R.id.row_title);
          content=view.findViewById(R.id.row_content);
